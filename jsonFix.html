@@ -3,12 +3,24 @@
 	<head>
 		<meta charset= "UTF-8">
 		<title>jsonFix</title>
-		<script src = 'http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js'>
-		$.ajax({
+		<script src = 'http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js'></script>
+	</head>
+	<body>
+		<h1>Fixing JSON...</h1>
+	</body>
+
+
+	<script type="text/javascript">
+/*			$.ajax({
 			dataType: 'json',
 			url: 'charts.json',
-			onSuccess: console.log('here'),
-		});
+			onSuccess: fixIt(),
+			onError: console.log('failed')
+		});*/
+
+	$json = {"CPT":70010,"CPT DESCRIPTION":"MYELOGRAPHY POST FOSSA-RAD S & I","DESCRIPTION 2":"Contrast x-ray of brain","APC":'00274',"APC Group Title":"Myelography","Professional pymt":" $-   "," Higher of Facility/APC pymt ":" $507.60 "," Total payment ":" $507.60 "};
+
+	console.log($json['APC']);
 
 
 		function fixIt(data)
@@ -16,10 +28,5 @@
 			console.log('fixIt!');
 			console.log(data);
 		}
-
 		</script>
-	</head>
-	<body>
-		<h1>Fixing JSON...</h1>
-	</body>
 </html>
