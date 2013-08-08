@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset= "UTF-8">
+		<title>jsonFix</title>
+		<script src = 'http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js'>
+		$.ajax({
+			dataType: 'json',
+			url: 'charts.json',
+			onSuccess: console.log('here'),
+		});
+
+
+		function fixIt(data)
+		{
+			console.log('fixIt!');
+			console.log(data);
+		}
+
+		</script>
+	</head>
+	<body>
+		<h1>Fixing JSON...</h1>
+	</body>
+</html>
