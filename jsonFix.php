@@ -1877,7 +1877,7 @@
 		$string . '{';
 		//stringify values
 		$cpt = '"' . $json[$i]['CPT'] . '"';
-		$apc = '"' . $json[$i][3] . '"';
+		$apc = '"' . $json[$i]['APC #'] . '"';
 		foreach ($json[$i] as $key => $value)
 		{
 			echo $key . ' => ' . $value;
