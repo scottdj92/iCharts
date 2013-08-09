@@ -15,12 +15,47 @@
 	<div data-role = "page" id = 'master'>
 
 		<div data-role = 'header'>
-			<h1>Medical Charts</h1>
+			<h1>Medical Charts Autocomplete</h1>
 			<a href = '#' data-icon = 'gear' class = 'ui-btn-right'>Options</a>
 		</div>
 
 		<div data-role = 'content'>
 			<!-- <a href = '#swipePanel'>Click me to open the panel!</a> -->
+			<h3>Please enter your procedure</h3>
+			<ul id = 'autocomplete' data-role = 'listview' data-inset = 'true' data-filter = 'true' data-filter-placeholder = 'Find a procedure...'></ul>
+			<script type="text/javascript">
+			//script for dynamically loading listviews that match
+				$('#autocomplete').on('listviewbeforefilter', function(e, data){
+					var $ul = $(this);
+					$input = $(data.input);
+					var value = $input.val();
+					html = '';
+
+					$ul.html("");
+					if (value && value.length > 2) {
+						$ul.html("<li><div class = 'ui-loader'><a class = 'ui-icon ui-icon-loading' href = '#sub-detail'></a></div></li>");
+						$ul.listview('refresh');
+						$.ajax({
+							url: 'charts.json',
+							dataType: 'jsonp',
+							crossDomain: true,
+							data: {
+								q: $input.val()
+							}
+						}) // end of ajax
+						 //end of if
+					.then(function(response){
+						$.each(response, function(i, val){
+							html += "<li>" + val + "</li>";
+						});
+
+						$ul.html(html);
+						$ul.listview('refresh');
+						$ul.trigger('updatelayout');
+						});
+					}
+				});
+			</script>
 			<a href = '#detail' data-role = 'button'>Click me to move on!</a>
 		</div>
 
@@ -52,7 +87,7 @@
 			<div data-role = 'navbar'>
 				<ul>
 					<!-- to add more navs, simply create a new li element, but maxes out at 5 rows across -->
-					<li><a href = '#master' data-icon = 'arrow-l'>Home</a></li>
+					<li><a href = '#master'>Home</a></li>
 					<li><a href = '#'>Current</a></li>
 				</ul>
 			</div><!-- /navbar -->
@@ -154,11 +189,11 @@
 			</div>
 		</div><!-- /footer -->
 	</div><!-- /sub-detail -->
-
-
 <script type="text/javascript">
-
 	var $nodes = $('#nodeList').find('li').find('a')[0].innerHTML = 'Changed';
 </script>
+
+
+
 </body>
 </html>
