@@ -155,9 +155,13 @@
 			<p>Description 2</p>
 			<h3>Payment</h3>
 			<form>
-				<label>
-					<input type = 'checkbox' name = 'checkbox-0' class = 'addCalc'>Add to Calculator
-				</label>
+				<div data-role = 'fieldcontain'>
+					<label for = 'flip-calc'>Add to Calculator:</label>
+					<select name = 'flip-calc' id = 'calcAdd' data-role = 'slider' data-track-theme = 'a' data-theme = 'a' data-mini = 'true'>
+						<option value = 'off'></option>
+						<option value = 'on'>Added</option>
+					</select> 
+				</div>
 			</form>
 		</div>
 
