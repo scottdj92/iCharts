@@ -37,7 +37,7 @@
 						$ul.html("<li><div class = 'ui-loader'><span class = 'ui-icon ui-icon-loading' href = '#sub-detail'></span></div></li>");
 						$ul.listview('refresh');
 						$.ajax({
-							url: 'chartsP.json',
+							url: 'newjsonp.json',
 							dataType: 'jsonp',
 							crossDomain: true,
 							jsonpCallback: 'jsonCallback',
@@ -46,7 +46,7 @@
 								q: $input.val()
 							},
 							success: function(json){
-								console.log(json.info);
+								console.dir(json.info);
 								$json = json;
 								generatejson(json);
 							}
@@ -55,7 +55,7 @@
 					.then(function(response){
 						$.each(response, function(i, val){
 							html += "<li>" + val + "</li>";
-							console.log($json.info[i]);
+							//console.log($json.info[i]);
 						});
 
 						$ul.html(html);
@@ -68,10 +68,10 @@
 
 				function generatejson(data)
 				{
-					console.log('generatejson');
+					//console.log('generatejson');
 					$.each(data, function(i, val){
 						html += "<li><a href = '#sub-detail'></a></li>";
-						console.log(data.info[i]);
+						//console.log(data.info[i]);
 					});
 				}
 			</script>
