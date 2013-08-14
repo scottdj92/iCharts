@@ -25,8 +25,9 @@
 			<ul id = 'autocomplete' data-role = 'listview' data-inset = 'true' data-filter = 'true' data-filter-placeholder = 'Find a procedure...'></ul>
 			<script type="text/javascript">
 			//script for dynamically loading listviews that match
+			var $ul;
 				$('#autocomplete').on('listviewbeforefilter', function(e, data){
-					var $ul = $(this);
+					$ul = $(this);
 					$input = $(data.input);
 					var value = $input.val();
 					html = '';
@@ -46,22 +47,22 @@
 								q: $input.val()
 							},
 							success: function(json){
-								console.dir(json.info);
+								//console.dir(json.info);
 								$json = json;
 								generatejson(json);
 							}
 						}) // end of ajax
 						 //end of if
-					.then(function(response){
-						$.each(response, function(i, val){
-							html += "<li>" + val + "</li>";
+/*					.then(function(response){
+						$.each(response.info[0], function(i, val){
+							html += "<li><a href = '#sub-detail'" + val + "</a></li>";
 							//console.log($json.info[i]);
 						});
 
 						$ul.html(html);
 						$ul.listview('refresh');
 						$ul.trigger('updatelayout');
-						});
+						});*/
 					}
 				});
 
@@ -69,9 +70,13 @@
 				function generatejson(data)
 				{
 					//console.log('generatejson');
+					//console.log(data.info);
 					$.each(data, function(i, val){
-						html += "<li><a href = '#sub-detail'></a></li>";
-						//console.log(data.info[i]);
+						html += "<li><a href = '#sub-detail'>" + val[i].DESCRIPTION + "</a></li>";
+						//console.log(d);
+						$ul.html(html);
+						$ul.listview('refresh');
+						$ul.trigger('updatelayout');
 					});
 				}
 			</script>
