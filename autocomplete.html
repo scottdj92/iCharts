@@ -38,7 +38,7 @@
 						$ul.html("<li><div class = 'ui-loader'><span class = 'ui-icon ui-icon-loading' href = '#sub-detail'></span></div></li>");
 						$ul.listview('refresh');
 						$.ajax({
-							url: 'newjsonp.json',
+							url: 'info.json',
 							dataType: 'jsonp',
 							crossDomain: true,
 							jsonpCallback: 'jsonCallback',
@@ -71,16 +71,25 @@
 				{
 					//console.log('generatejson');
 					//console.log(data.info);
-					$.each(data, function(i, val){
-						html += "<li><a href = '#sub-detail'>" + val[i].DESCRIPTION + "</a></li>";
+/*					$.each(data, function(k, val){
+						html += "<li><a href = '#sub-detail'>" + val[0].DESCRIPTION + "</a></li>";
 						//console.log(d);
 						$ul.html(html);
 						$ul.listview('refresh');
 						$ul.trigger('updatelayout');
-					});
+					});*/
+					
+					for (var i = 0; i < data.info.length; i++) {
+						//console.log(data.info[i].DESCRIPTION);
+						html += "<li><a href = '#sub-detail'>" + data.info[i].DESCRIPTION + "</a></li>";
+						//update linked lists
+						$ul.html(html);
+						$ul.listview('refresh');
+						$ul.trigger('updatelayout');
+					};
 				}
 			</script>
-			<a href = '#detail' data-role = 'button'>Click me to move on!</a>
+			<a href = '#detail' data-role = 'button'>page failure Test button</a>
 		</div>
 
 		<div data-role = 'footer' data-position = 'fixed'>
@@ -91,7 +100,6 @@
 					<li><a href = '#'>Calculator</a></li>
 				</ul>
 			</div>
-			<h2>created by Scott Jones &copy; 2013</h2>
 		</div>
 
 		<!-- panels **this must be placed as a sibiling of the page element** -->
@@ -108,13 +116,7 @@
 		<div data-role = 'header'>
 			<h1>Medical Chart Sub-Info</h1>
 			<a href = '#' data-icon = 'gear' class = 'ui-btn-right'>Options</a>
-			<div data-role = 'navbar'>
-				<ul>
-					<!-- to add more navs, simply create a new li element, but maxes out at 5 rows across -->
-					<li><a href = '#master'>Home</a></li>
-					<li><a href = '#'>Current</a></li>
-				</ul>
-			</div><!-- /navbar -->
+			<a href = '#master' data-icon = '' class = 'ui-btn-left'>Back</a>
 		</div><!-- /header -->
 
 		<div data-role = 'content'>
@@ -163,27 +165,19 @@
 		<div data-role = 'header'>
 			<h3>Procedure Title</h3>
 			<a href = '#' data-icon = 'gear' class = 'ui-btn-right'>Options</a>
-			<div data-role = 'navbar'>
-				<ul>
-					<!-- to add more navs, simply create a new li element, but maxes out at 5 rows across -->
-					<li data-icon = 'arrow-r' data-iconpos = 'right'><a href = '#master'>Home</a></li>
-					<li><a href = '#detail'>Detail</a></li>
-					<li><a href = '#'>Current</a></li>
-				</ul>
-			</div><!-- /navbar -->
 		</div>
 
 		<div data-role = 'content'>
 			<h1>Name of Procedure</h1>
 			<h5>APC Group Title</h5>
 			<p>Description 2</p>
-			<h3>Payment</h3>
+			<h3>Payment/Cost</h3>
 			<form>
 				<div data-role = 'fieldcontain'>
 					<label for = 'flip-calc'>Add to Calculator:</label>
 					<select name = 'flip-calc' id = 'calcAdd' data-role = 'slider' data-track-theme = 'a' data-theme = 'a' data-mini = 'true'>
 						<option value = 'off'></option>
-						<option value = 'on'>Added</option>
+						<option value = 'on'></option>
 					</select> 
 				</div>
 			</form>
