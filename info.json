@@ -1,6 +1,3 @@
-jsonCallback(
-{
-	"info":
 	[{"CPT":70010,"CPT_DESCRIPTION":"MYELOGRAPHY POST FOSSA-RAD S & I","DESCRIPTION":"Contrast x-ray of brain","APC":00274,"APC_Group_Title":"Myelography","Professional_pymt":" $-   "," Higher_of_Facility/APC_pymt ":" $507.60 "," Total_payment ":" $507.60 "},
 	{"CPT":70015,"CPT_DESCRIPTION":"CISTERNOGRAPHY + CONTRAST-RAD S & I","DESCRIPTION":"Contrast x-ray of brain","APC":00274,"APC_Group_Title":"Myelography","Professional_pymt":" $58.90 "," Higher_of_Facility/APC_pymt ":" $507.60 "," Total_payment ":" $566.50 "},
 	{"CPT":70030,"CPT_DESCRIPTION":"RAD EXAM EYE DETECTION FB","DESCRIPTION":"X-ray eye for foreign body","APC":00260,"APC_Group_Title":"Level I Plain Film Except Teeth","Professional_pymt":" $8.13 "," Higher_of_Facility/APC_pymt ":" $45.95 "," Total_payment ":" $54.08 "},
@@ -1853,5 +1850,4 @@ jsonCallback(
 	{"CPT":93306,"CPT_DESCRIPTION":"ECHO TTHRC R-T 2D -+M-MODE COMPL SP","DESCRIPTION":"Complete Echo+tech","APC":00269,"APC_Group_Title":"Tte w/doppler complete","Professional_pymt":" $209.42 "," Higher_of_Facility/APC_pymt ":" $403.82 "," Total_payment ":" $613.24 "},
 	{"CPT":93312,"CPT_DESCRIPTION":"ECHO TRNSESOPH; W/PROBE PLCMT-REPRT","DESCRIPTION":"TEE","APC":00270,"APC_Group_Title":"Echo transesophageal","Professional_pymt":" $105.60 "," Higher_of_Facility/APC_pymt ":" $577.73 "," Total_payment ":" $683.33 "},
 	{"CPT":93325,"CPT_DESCRIPTION":"DOPPLR ECHO COLOR FLOW VELOCITY MAP","DESCRIPTION":"Color Flow","APC":00000,"APC_Group_Title":"Doppler color flow add-on","Professional_pymt":" $3.73 "," Higher_of_Facility/APC_pymt ":" $-   "," Total_payment ":" $3.73 "},
-	{"CPT":93320,"CPT_DESCRIPTION":"DOPPLER ECHO CONT WAVE; COMPLT","DESCRIPTION":"Doppler","APC":00000,"APC_Group_Title":"Doppler echo exam heart","Professional_pymt":" $18.61 "," Higher_of_Facility/APC_pymt ":" $-   "," Total_payment ":" $18.61 "}]
-});
+	{"CPT":93320,"CPT_DESCRIPTION":"DOPPLER ECHO CONT WAVE; COMPLT","DESCRIPTION":"Doppler","APC":00000,"APC_Group_Title":"Doppler echo exam heart","Professional_pymt":" $18.61 "," Higher_of_Facility/APC_pymt ":" $-   "," Total_payment ":" $18.61 "}

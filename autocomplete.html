@@ -24,14 +24,52 @@
 			<h3>Please enter your procedure</h3>
 			<ul id = 'autocomplete' data-role = 'listview' data-inset = 'true' data-filter = 'true' data-filter-placeholder = 'Find a procedure...'></ul>
 			<script type="text/javascript">
+			var $json = [];
+			var html = '';
+
+			$(document).ready(function()
+			{
+				$.ajax({
+					url: 'info.json',
+					dataType: 'json',
+					crossDomain: true,
+					contentType: 'application/json',
+					success: function(json)
+					{
+						$json = json;
+						console.log(json);
+						generateList($json);
+					}
+				});
+			});
+
+			function generateList(data)
+			{
+				console.log('generateList');
+				console.log(data);
+
+/*				$($json).each(function(index)
+				{
+					//console.log(index + ': ');
+					//console.log($(this)[0]);
+					$ul = $('#autocomplete');
+					$ul.html("<li><div class = 'ui-loader'><span class = 'ui-icon ui-icon-loading' href = '#sub-detail'></span></div></li>");
+						$ul.listview('refresh');
+					html += "<li><a href = '#sub-detail'>" + $(this)[0].CPT + ': ' + $(this)[0].DESCRIPTION + "</a></li>";
+					//$ul.html(html);
+					$ul.html(html);
+
+					$ul.listview('refresh');
+					$ul.trigger('updatelayout');
+				});*/
+			}
 			//script for dynamically loading listviews that match
-			var $ul;
-				$('#autocomplete').on('listviewbeforefilter', function(e, data){
+			//var $ul;
+/*				$('#autocomplete').on('listviewbeforefilter', function(e, data){
 					$ul = $(this);
 					$input = $(data.input);
 					var value = $input.val();
 					html = '';
-					var $json;
 
 					$ul.html("");
 					if (value && value.length > 2) {
@@ -49,45 +87,22 @@
 							success: function(json){
 								//console.dir(json.info);
 								$json = json;
-								generatejson(json);
+								//generatejson(json);
 							}
 						}) // end of ajax
 						 //end of if
-/*					.then(function(response){
-						$.each(response.info[0], function(i, val){
-							html += "<li><a href = '#sub-detail'" + val + "</a></li>";
-							//console.log($json.info[i]);
+						$.each($json, function(index, val)
+						{
+							html += "<li><a href = '#sub-detail'>" + $json.info[index].CPT + ': ' + $json.info[index].DESCRIPTION + "</a></li>";
+							//console.log(index + ': ' + val);
+							//console.log(response);
 						});
 
 						$ul.html(html);
 						$ul.listview('refresh');
 						$ul.trigger('updatelayout');
-						});*/
 					}
-				});
-
-
-				function generatejson(data)
-				{
-					//console.log('generatejson');
-					//console.log(data.info);
-/*					$.each(data, function(k, val){
-						html += "<li><a href = '#sub-detail'>" + val[0].DESCRIPTION + "</a></li>";
-						//console.log(d);
-						$ul.html(html);
-						$ul.listview('refresh');
-						$ul.trigger('updatelayout');
-					});*/
-					
-					for (var i = 0; i < data.info.length; i++) {
-						//console.log(data.info[i].DESCRIPTION);
-						html += "<li><a href = '#sub-detail'>" + data.info[i].DESCRIPTION + "</a></li>";
-						//update linked lists
-						$ul.html(html);
-						$ul.listview('refresh');
-						$ul.trigger('updatelayout');
-					};
-				}
+				});*/
 			</script>
 			<a href = '#detail' data-role = 'button'>page failure Test button</a>
 		</div>
@@ -103,7 +118,7 @@
 		</div>
 
 		<!-- panels **this must be placed as a sibiling of the page element** -->
-		<div data-role="panel" id="swipePanel" data-dismissible = 'true'>
+		<div data-role="panel" id="swipePanel" data-dismissible = 'true' data-display = 'reveal'>
 		    <!-- panel content goes here -->
 		    <div data-role = 'content'>
 		    	<h4>I'm a panel!</h4>
@@ -141,7 +156,7 @@
 		</div>
 
 
-		<div data-role="panel" id="swipePanel" data-dismissible = 'true'>
+		<div data-role="panel" id="swipePanel" data-dismissible = 'true' data-display = 'reveal'>
 		    <!-- panel content goes here -->
 		    <div data-role = 'content'>
 		    	<h1>Current Region</h1>
@@ -185,7 +200,7 @@
 		</div>
 
 		<!-- panels **this must be placed as a sibiling of the page element** -->
-		<div data-role="panel" id="swipePanel" data-dismissible = 'true'>
+		<div data-role="panel" id="swipePanel" data-dismissible = 'true' data-display = 'reveal'>
 		    <!-- panel content goes here -->
 		    <div data-role = 'content'>
 		    	<h1>Current Sub-Region</h1>
