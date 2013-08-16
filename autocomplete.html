@@ -22,96 +22,6 @@
 			<!-- <a href = '#swipePanel'>Click me to open the panel!</a> -->
 			<h3>Please enter your procedure</h3>
 			<ul id = 'autocomplete' data-role = 'listview' data-inset = 'true' data-filter = 'true' data-filter-placeholder = 'Find a procedure...'></ul>
-			<script type="text/javascript">
-			var $json = [];
-			var html = '';
-
-			$(document).ready(function()
-			{
-				$.ajax({
-					url: 'info.json',
-					dataType: 'jsonp',
-					crossDomain: true,
-					contentType: 'application/json',
-					jsonpCallback: 'jsonCallBack',
-					success: function(json)
-					{
-						$json = json;
-						//console.log($json);
-						generateList($json);
-					},
-					error: function()
-					{
-						console.log('XHR failed');
-					}
-				});
-			});
-
-/*			function generateList(data)
-			{
-				console.log('generateList');
-				//console.log(data);
-
-				$($json).each(function(index)
-				{
-					//console.log(index + ': ');
-					//console.log($(this)[0]);
-					$ul = $('#autocomplete');
-					$ul.html("<li><div class = 'ui-loader'><span class = 'ui-icon ui-icon-loading' href = '#sub-detail'></span></div></li>");
-						$ul.listview('refresh');
-					html += "<li><a href = '#sub-detail'>" + $(this)[0].CPT + ': ' + $(this)[0].DESCRIPTION + "</a></li>";
-					//$ul.html(html);
-					$ul.html(html);
-
-					$ul.listview('refresh');
-					$ul.trigger('updatelayout');
-				});
-			}*/
-			//script for dynamically loading listviews that match
-		function generateList(data)
-		{
-			var $ul;
-				$('#autocomplete').on('listviewbeforefilter', function(e, data)
-				{
-					$ul = $(this);
-					$input = $(data.input);
-					var value = $input.val();
-					html = '';
-
-					$ul.html("");
-					if (value && value.length > 2) {
-						$ul.html("<li><div class = 'ui-loader'><span class = 'ui-icon ui-icon-loading' href = '#sub-detail'></span></div></li>");
-						$ul.listview('refresh');
-						/*$.ajax({
-							url: 'info.json',
-							dataType: 'jsonp',
-							crossDomain: true,
-							jsonpCallback: 'jsonCallback',
-							contentType: 'application/json',
-							data: {
-								q: $input.val()
-							},
-							success: function(json){
-								//console.dir(json.info);
-								$json = json;
-								//generatejson(json);
-							}
-						}) // end of ajax*/
-						 //end of if
-						$.each(data, function(index, val)
-						{
-							html += "<li><a href = '#sub-detail'>" + data[index].CPT + ': ' + data[index].DESCRIPTION + "</a></li>";
-							console.log(index + ': ' + val);
-							//console.log(response);
-						});
-
-						$ul.html(html);
-						$ul.listview('refresh');
-						$ul.trigger('updatelayout');
-					}
-				});
-			}
-			</script>
 			<a href = '#detail' data-role = 'button'>page failure Test button</a>
 		</div>
 
@@ -188,7 +98,7 @@
 		<div data-role = 'header'>
 			<h3>Procedure Title</h3>
 			<a href = '#' data-icon = 'gear' class = 'ui-btn-right'>Options</a>
-			<a href = '#detail' data-icon = '' class = 'ui-btn-left'>Back</a>
+			<a href = '#master' data-icon = '' class = 'ui-btn-left'>Back</a>
 		</div>
 
 		<div data-role = 'content'>
@@ -206,6 +116,12 @@
 				</div>
 			</form>
 		</div>
+		<script type="text/javascript">
+		//script for dynamically changing sub-detail information
+
+
+
+		</script>
 
 		<!-- panels **this must be placed as a sibiling of the page element** -->
 		<div data-role="panel" id="swipePanel" data-dismissible = 'true' data-display = 'reveal'>
@@ -237,6 +153,63 @@
 	</div><!-- /sub-detail -->
 <script type="text/javascript">
 	var $nodes = $('#nodeList').find('li').find('a')[0].innerHTML = 'Changed';
+</script>
+
+
+<script type="text/javascript">
+var $json = [];
+var html = '';
+
+$(document).ready(function()
+{
+	$.ajax({
+		url: 'info.json',
+		dataType: 'jsonp',
+		crossDomain: true,
+		contentType: 'application/json',
+		jsonpCallback: 'jsonCallBack',
+		success: function(json)
+		{
+			$json = json;
+			//console.log($json);
+			generateList($json);
+		},
+		error: function()
+		{
+			console.log('XHR failed');
+		}
+	});
+});
+//script for dynamically loading listviews that match
+function generateList(data)
+{
+var $ul;
+	$('#autocomplete').on('listviewbeforefilter', function(e, data)
+	{
+		$ul = $(this);
+		$input = $(data.input);
+		var value = $input.val();
+		var html = '';
+		console.log($json);
+
+		$ul.html("");
+		if (value && value.length > 2) {
+			$ul.html("<li><div class = 'ui-loader'><span class = 'ui-icon ui-icon-loading' href = '#sub-detail'></span></div></li>");
+			$ul.listview('refresh');
+			$.each($json, function(k, val)
+			{
+				html += "<li><a href = '#sub-detail' id = " + k + ">" + $json[k].CPT + ': ' + $json[k].DESCRIPTION + "</a></li>";
+				//console.log(k + ': ' + val);
+			});
+			$ul.html(html);
+			//console.log($ul.html());
+			$ul.listview('refresh');
+			$ul.trigger('updatelayout');
+		}
+		//endif
+	});
+}
+
 </script>
 
 
