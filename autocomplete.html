@@ -101,11 +101,12 @@
 			<a href = '#master' data-icon = '' class = 'ui-btn-left'>Back</a>
 		</div>
 
-		<div data-role = 'content'>
+		<div data-role = 'content' id = 'expandInfo'>
 			<h1>Name of Procedure</h1>
 			<h5>APC Group Title</h5>
 			<p>Description 2</p>
 			<h3>Payment/Cost</h3>
+			<!-- content of these tags will be dynamically changes -->
 			<form>
 				<div data-role = 'fieldcontain'>
 					<label for = 'flip-calc'>Add to Calculator:</label>
@@ -116,12 +117,6 @@
 				</div>
 			</form>
 		</div>
-		<script type="text/javascript">
-		//script for dynamically changing sub-detail information
-
-
-
-		</script>
 
 		<!-- panels **this must be placed as a sibiling of the page element** -->
 		<div data-role="panel" id="swipePanel" data-dismissible = 'true' data-display = 'reveal'>
@@ -145,7 +140,6 @@
 			<div data-role = 'navbar'>
 				<ul>
 					<li><a href = '#swipePanel'>Info</a></li>
-					<li><a href = '#'>Master</a></li>
 					<li><a href = '#'>Calculator</a></li>
 				</ul>
 			</div>
@@ -190,7 +184,7 @@ var $ul;
 		$input = $(data.input);
 		var value = $input.val();
 		var html = '';
-		console.log($json);
+		//console.log($json);
 
 		$ul.html("");
 		if (value && value.length > 2) {
@@ -200,11 +194,35 @@ var $ul;
 			{
 				html += "<li><a href = '#sub-detail' id = " + k + ">" + $json[k].CPT + ': ' + $json[k].DESCRIPTION + "</a></li>";
 				//console.log(k + ': ' + val);
+				//JSON entry is stored within the ID of each link. Accessing that specific JSON will work like $json[k]
 			});
+
+
 			$ul.html(html);
 			//console.log($ul.html());
 			$ul.listview('refresh');
 			$ul.trigger('updatelayout');
+
+
+			//loop through all tags and attach event listener for each entry
+			$ul.children().each(function()
+			{
+				$(this).on('click', function()
+				{
+					//get html
+					var $index = $(this).find('a').attr('id');
+					var $title = $('#expandInfo').children('h1');
+					var $APC = $('#expandInfo').children('h5');
+					var $desc2 = $('#expandInfo').children('p');
+					var $cost = $('#expandInfo').children('h3');
+
+					//replace html
+					$title.html($json[$index].CPT_DESCRIPTION);
+					$APC.html($json[$index].APC);
+					$desc2.html($json[$index].DESCRIPTION);
+					$cost.html($json[$index].Total_payment);
+				});
+			});
 		}
 		//endif
 	});
