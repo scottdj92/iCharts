@@ -14,7 +14,7 @@
 	<div data-role = "page" id = 'master'>
 
 		<div data-role = 'header'>
-			<h1>Medical Charts Autocomplete</h1>
+			<h1>Medical Charts</h1>
 			<a href = '#' data-icon = 'gear' class = 'ui-btn-right'>Options</a>
 		</div>
 
@@ -22,14 +22,13 @@
 			<!-- <a href = '#swipePanel'>Click me to open the panel!</a> -->
 			<h3>Please enter your procedure</h3>
 			<ul id = 'autocomplete' data-role = 'listview' data-inset = 'true' data-filter = 'true' data-filter-placeholder = 'Find a procedure...'></ul>
-			<a href = '#detail' data-role = 'button'>page failure Test button</a>
+			<!-- <a href = '#detail' data-role = 'button'>page failure Test button</a> -->
 		</div>
 
 		<div data-role = 'footer' data-position = 'fixed'>
 			<div data-role = 'navbar'>
 				<ul>
 					<li><a href = '#swipePanel'>Info</a></li>
-					<li><a href = '#'>Master</a></li>
 					<li><a href = '#'>Calculator</a></li>
 				</ul>
 			</div>
@@ -122,17 +121,7 @@
 		<div data-role="panel" id="swipePanel" data-dismissible = 'true' data-display = 'reveal'>
 		    <!-- panel content goes here -->
 		    <div data-role = 'content'>
-		    	<h1>Current Sub-Region</h1>
-		    	<h2>More Procedures</h2>
-	    			<ul data-role = 'listview' data-inset = 'true'>
-	    				<li data-role = 'list-divider'>Surgery</li>
-	    				<li><a href="#">Scalpel</a></li>
-	    				<li><a href="#">Suture</a></li>
-	    				<li><a href="#">Surgical Tubing</a></li>
-			    		<li data-role = 'list-divider'>X-Ray</li>
-						<li><a href="#">CAT Scan</a></li>
-						<li><a href="#">Lab Test</a></li>
-					</ul>
+		    	
 		    </div><!-- /content -->
 		</div><!-- /panel -->
 
@@ -218,7 +207,7 @@ var $ul;
 
 					//replace html
 					$title.html($json[$index].CPT_DESCRIPTION);
-					$APC.html($json[$index].APC);
+					$APC.html('APC: ' + $json[$index].APC);
 					$desc2.html($json[$index].DESCRIPTION);
 					$cost.html($json[$index].Total_payment);
 				});
